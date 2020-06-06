@@ -1,0 +1,13 @@
+class Solution {
+public:
+    vector<vector<int>> reconstructQueue(vector<vector<int>>& people) {
+        sort(people.begin(),people.end(),[](vector<int>& a,vector<int>& b) 
+             {return a.front()>b.front() || (a.front()==b.front()&& a.back()<b.back());});
+        
+        vector<vector<int>> ans;
+        for(auto &c :people){
+            ans.insert(ans.begin()+c.back(),c);
+        }
+        return ans;
+    }
+};
