@@ -1,0 +1,30 @@
+class Solution {
+public:
+    
+ 
+    list<string> path;
+    map<string,priority_queue<string,vector<string>,greater<string>>> m;
+
+    
+    void dfs(string departure){
+        
+        while(!m[departure].empty()){
+            string temp = m[departure].top();
+            m[departure].pop();
+            dfs(temp);
+        }
+        path.push_front(departure);
+    }
+    
+    
+    
+    vector<string> findItinerary(vector<vector<string>>& tickets) {
+        
+        for(auto &t:tickets){
+            m[t[0]].push(t[1]);
+        }
+        
+        dfs("JFK");
+      return vector<string>(path.begin(),path.end());
+    }
+};
