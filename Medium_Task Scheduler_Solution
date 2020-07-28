@@ -1,0 +1,18 @@
+class Solution {
+public:
+    int leastInterval(vector<char>& tasks, int n) {
+        vector<int> cnt(26,0);
+        
+        for(auto task:tasks){
+            cnt[task-'A']++;
+        }
+        
+        sort(cnt.begin(),cnt.end());
+        
+        int len=tasks.size(),i=25,mx=cnt[25];
+        
+        while(i>=0&& mx==cnt[i])i--;
+        
+        return max(len,(mx-1)*(n+1)+25-i);
+    }
+};
